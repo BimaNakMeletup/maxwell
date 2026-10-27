@@ -17,6 +17,38 @@ html, body {
   -webkit-user-select: none;
   user-select: none;
   -webkit-touch-callout: none;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  transition: background-color 0.4s ease;
+}
+
+/* Background saat Mode Musim Gugur Aktif */
+body.mode-autumn {
+  background-color: #b85d19;
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Efek Blooming & Sun Lens Glow Musim Gugur */
+body.mode-autumn::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(circle at 30% 25%, rgba(255, 220, 130, 0.35) 0%, rgba(255, 150, 60, 0.15) 35%, rgba(180, 60, 20, 0.05) 70%, transparent 100%);
+  mix-blend-mode: screen;
+}
+
+body.mode-autumn::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 60%, rgba(120, 45, 10, 0.25) 100%);
+  box-shadow: inset 0 0 120px rgba(255, 160, 40, 0.28);
 }
 
 #webgl-canvas {
@@ -29,8 +61,81 @@ html, body {
   outline: none;
   touch-action: none;
   cursor: grab;
+  z-index: 1;
 }
 
 #webgl-canvas:active {
   cursor: grabbing;
+}
+
+/* Tombol Toggle di Pojok Kanan Atas */
+.mode-toggle-btn {
+  position: fixed;
+  top: 1.25rem;
+  right: 1.25rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1.5px solid rgba(0, 0, 0, 0.15);
+  border-radius: 9999px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #1f2937;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.mode-toggle-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.16);
+  background: #ffffff;
+}
+
+.mode-toggle-btn:active {
+  transform: translateY(0) scale(0.97);
+}
+
+.mode-icon {
+  font-size: 1.25rem;
+  display: inline-block;
+}
+
+/* Tampilan Tombol saat Mode Musim Gugur Aktif */
+.mode-toggle-btn.autumn-active {
+  background: linear-gradient(135deg, #d84315, #f57c00, #ffb300);
+  color: #ffffff;
+  border-color: #ffd54f;
+  box-shadow: 0 0 22px rgba(255, 160, 0, 0.65), 0 4px 14px rgba(216, 67, 21, 0.4);
+}
+
+.mode-toggle-btn.autumn-active:hover {
+  background: linear-gradient(135deg, #bf360c, #e65100, #ffa000);
+  box-shadow: 0 0 28px rgba(255, 183, 77, 0.8), 0 6px 18px rgba(191, 54, 12, 0.5);
+}
+
+.mode-toggle-btn.autumn-active .mode-icon {
+  animation: leafFloat 2s ease-in-out infinite alternate;
+}
+
+@keyframes leafFloat {
+  0% { transform: translateY(0) rotate(-6deg); }
+  100% { transform: translateY(-3px) rotate(14deg); }
+}
+
+@media (max-width: 600px) {
+  .mode-toggle-btn {
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.82rem;
+  }
 }
