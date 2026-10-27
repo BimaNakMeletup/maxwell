@@ -408,7 +408,7 @@ function setAutumnMode(active) {
       const icon = toggleBtn.querySelector('.mode-icon');
       const label = toggleBtn.querySelector('.mode-label');
       if (icon) icon.textContent = '🍂';
-      if (label) label.textContent = 'Mode Gugur';
+      if (label) label.textContent = 'autumn';
     }
   }
 }
