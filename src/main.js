@@ -380,10 +380,10 @@ function setAutumnMode(active) {
       const icon = toggleBtn.querySelector('.mode-icon');
       const label = toggleBtn.querySelector('.mode-label');
       if (icon) icon.textContent = '⚪';
-      if (label) label.textContent = 'Mode Biasa';
+      if (label) label.textContent = 'plain';
     }
 
-    beachAudio.play().catch(() => {});
+    beachAudio.play().catch(() => { });
   } else {
     // 2. MODE BIASA (Putih Bersih Polos)
     document.body.classList.remove('mode-autumn');
@@ -527,7 +527,7 @@ let angularVelocity = 0;
 function triggerAudio() {
   const audio = getActiveAudio();
   if (audio.paused) {
-    audio.play().catch(() => {});
+    audio.play().catch(() => { });
   }
 }
 
@@ -590,7 +590,7 @@ window.addEventListener('touchstart', (e) => {
       if (!isAutumnMode && Math.abs(angularVelocity) < 0.001) {
         audio.pause();
       }
-    }).catch(() => {});
+    }).catch(() => { });
   }
 }, { passive: true });
 
@@ -679,12 +679,12 @@ function animate(currentTime = 0) {
   // Audio sinkronisasi dengan mode
   if (isAutumnMode) {
     if (beachAudio.paused) {
-      beachAudio.play().catch(() => {});
+      beachAudio.play().catch(() => { });
     }
   } else {
     if (Math.abs(angularVelocity) > 0.001) {
       if (normalAudio.paused) {
-        normalAudio.play().catch(() => {});
+        normalAudio.play().catch(() => { });
       }
     } else {
       if (!normalAudio.paused) {
